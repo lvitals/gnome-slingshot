@@ -1,0 +1,10 @@
+{
+    "extension-id": "slingshot",
+    "uuid": "slingshot@leavitals",
+    "settings-schema": "org.gnome.shell.extensions.slingshot",
+    "gettext-domain": "gnome-shell-extension-slingshot",
+    "name": "Slingshot",
+    "description": "Slingshot launcher in the form of a GNOME Shell extension.",
+    "shell-version": [ "3.10", "3.12", "3.14", "3.22" ],
+    "version": "1.0"
+}
