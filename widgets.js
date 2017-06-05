@@ -627,7 +627,7 @@ const Sidebar = new Lang.Class({
 
         this.actor = new St.BoxLayout({
             vertical: true,
-            width: 150
+            width: 145
         });
         this.actor.add_style_class_name('sidebar');
         this.actor._delegate = this;
@@ -710,7 +710,7 @@ const Switcher = new Lang.Class({
 
         this.actor = new St.BoxLayout({
             can_focus: false,
-            style: 'spacing: 10px;'
+            style: 'spacing: 4px;'
         });
         this.actor._delegate = this;
     },
@@ -720,7 +720,6 @@ const Switcher = new Lang.Class({
         let button = new St.Button({
             label: label.toString(),
             width: 30,
-            height: 30,
             can_focus: false,
             style_class: 'button switcher',
             toggle_mode: true

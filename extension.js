@@ -96,12 +96,14 @@ const SlingshotView = new Lang.Class({
             vertical: true
         });
 
-        this.top = new St.BoxLayout({
-            margin_top: 12,
-            margin_right: 12,
-            margin_bottom: 12,
-            margin_left: 12
-        });
+        this.top = new St.BoxLayout();
+
+        // this.top = new St.BoxLayout({
+        //     margin_top: 12,
+        //     margin_right: 12,
+        //     margin_bottom: 12,
+        //     margin_left: 12
+        // });
 
         let topSeparator = new St.Label({ text: '' });
 
@@ -137,12 +139,14 @@ const SlingshotView = new Lang.Class({
         this.top.add(topSeparator, { expand: true });
         this.top.add(this.searchbar.actor);
 
-        this.center = new St.BoxLayout({
-            margin_top: 0,
-            margin_right: 12,
-            margin_bottom: 12,
-            margin_left: 12
-        });
+        // this.center = new St.BoxLayout({
+        //     margin_top: 12,
+        //     margin_right: 12,
+        //     margin_bottom: 12,
+        //     margin_left: 12
+        // });
+
+        this.center = new St.BoxLayout();
 
         // Create the layout which works like view_manager
         this.viewManager = new St.Widget({
@@ -174,6 +178,7 @@ const SlingshotView = new Lang.Class({
             margin_bottom: 12,
             margin_left: 24
         });
+
         this.bottom.add_actor(this.pageSwitcher.actor);
 
         this.container.add(this.top, {});
@@ -579,9 +584,9 @@ const SlingshotView = new Lang.Class({
 
                 // change the paddings/margins back to normal
                 //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE + 5);
-                this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
-                this.center.set_margin_left(12);
-                this.top.set_margin_left(12);
+                // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
+                // this.center.set_margin_left(12);
+                // this.top.set_margin_left(12);
                 this.viewManager.set_size(this._defaultColumns * 130, this._defaultRows * 145);
                 break;
 
@@ -598,10 +603,10 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.show();
 
                 // remove the padding/margin on the left
-                //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
-                this.box.set_style('padding-left: 0px');
-                this.center.set_margin_left(0);
-                this.top.set_margin_left(17);
+                // get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
+                // this.box.set_style('padding-left: 0px');
+                // this.center.set_margin_left(0);
+                // this.top.set_margin_left(17);
                 this.viewManager.set_size(this._defaultColumns * 130 + 17, this._defaultRows * 145);
                 break;
 
@@ -615,9 +620,9 @@ const SlingshotView = new Lang.Class({
 
                 // change the paddings/margins back to normal
                 //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE + 5);
-                this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
-                this.center.set_margin_left(12);
-                this.top.set_margin_left(12);
+                // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
+                // this.center.set_margin_left(12);
+                // this.top.set_margin_left(12);
                 this.viewManager.set_size(this._defaultColumns * 130, this._defaultRows * 145);
                 break;
         }
