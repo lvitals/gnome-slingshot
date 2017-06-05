@@ -828,11 +828,17 @@ const SlingshotButton = new Lang.Class({
 
         let hbox = new St.BoxLayout({ style_class: 'panel-status-menu-box' });
 
-        this._label = new St.Label({
-            text: _('Applications'),
-            y_expand: true,
-            y_align: Clutter.ActorAlign.CENTER
+        this._label = new St.Icon({
+            icon_size: 26,
+            gicon: new Gio.ThemedIcon({ name: 'view-grid-symbolic' })
         });
+
+        // this._label = new St.Label({
+        //     text: _('Applications'),
+        //     y_expand: true,
+        //     y_align: Clutter.ActorAlign.CENTER
+        // });
+       
         hbox.add_child(this._label);
 
         this.actor.add_actor(hbox);
@@ -842,20 +848,19 @@ const SlingshotButton = new Lang.Class({
 
     _onOpenStateChanged: function(menu, open) {
         if (open) {
-            this.menu.showSlingshot();
-
-            // Fix lost focus on open
-            if (this._menuToggleTimeoutId > 0)
-                Mainloop.source_remove(this._menuToggleTimeoutId);
-
+            // this.menu.showSlingshot();
             this._menuToggleTimeoutId = Mainloop.timeout_add(100, Lang.bind(this, function() {
-                menu.searchbar.actor.text = '';
+
+                // Set focus to searchbar
                 menu.searchbar.grabFocus();
+
             }));
 
         } else {
-            if (this._menuToggleTimeoutId > 0)
-                Mainloop.source_remove(this._menuToggleTimeoutId);
+
+            // Clear text searchbar
+            menu.searchbar.actor.text = '';
+
         }
         this.parent(menu, open);
     },
