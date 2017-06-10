@@ -73,7 +73,6 @@ const SlingshotView = new Lang.Class({
         
         this.pageSwitcher.setActive(this.pageSwitcher.active);
 
-
     },
 
     _setupSize: function() {
@@ -586,11 +585,6 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.hide();
                 this._gridView.actor.show();
 
-                // change the paddings/margins back to normal
-                //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE + 5);
-                // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
-                // this.center.set_margin_left(12);
-                // this.top.set_margin_left(12);
                 this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
 
@@ -606,13 +600,7 @@ const SlingshotView = new Lang.Class({
                 this._searchView.actor.hide();
                 this._categoryView.actor.show();
                 this._gridView.actor.hide();
-                
 
-                // remove the padding/margin on the left
-                //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
-                // this.box.set_style('padding-left: 0px');
-                // this.center.set_margin_left(12);
-                // this.top.set_margin_left(17);
                 this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
 
@@ -624,11 +612,6 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.hide();
                 this._searchView.actor.show();
 
-                // change the paddings/margins back to normal
-                //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE + 5);
-                // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
-                // this.center.set_margin_left(12);
-                // this.top.set_margin_left(12);
                 this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
         }
@@ -671,6 +654,10 @@ const SlingshotView = new Lang.Class({
             appEntry.connect('app-launched', Lang.bind(this, function() {
                 this.close(true);
             }));
+
+            // set size icon to grid
+            appEntry.actor.set_size(130, 130);
+
             this._gridView.append(appEntry.actor);
         }, this);
 
@@ -722,7 +709,6 @@ const SlingshotView = new Lang.Class({
             }
         
             this.pageSwitcher.setActive(this.pageSwitcher.active);
-
 
         }
     },
@@ -855,12 +841,6 @@ const SlingshotButton = new Lang.Class({
             icon_size: 26,
             gicon: new Gio.ThemedIcon({ name: 'view-grid-symbolic' })
         });
-
-        // this._label = new St.Label({
-        //     text: _('Applications'),
-        //     y_expand: true,
-        //     y_align: Clutter.ActorAlign.CENTER
-        // });
        
         hbox.add_child(this._label);
 
@@ -903,12 +883,6 @@ function enable() {
     Slingshot = new SlingshotButton();
     Main.panel.addToStatusArea('slingshot', Slingshot, 1, 'left');
 
-    /*Main.wm.setCustomKeybindingHandler('panel-main-menu',
-                                       Shell.KeyBindingMode.NORMAL |
-                                       Shell.KeyBindingMode.OVERVIEW,
-                                       function() {
-                                           appsMenuButton.menu.toggle();
-                                       });*/
 }
 
 function disable() {
@@ -916,12 +890,6 @@ function disable() {
     Slingshot.destroy();
     activitiesButton.container.show();
 
-    /*Main.wm.setCustomKeybindingHandler('panel-main-menu',
-                                       Shell.KeyBindingMode.NORMAL |
-                                       Shell.KeyBindingMode.OVERVIEW,
-                                       Main.sessionMode.hasOverview ?
-                                       Lang.bind(Main.overview, Main.overview.toggle) :
-                                       null);*/
 }
 
 function init(metadata) {

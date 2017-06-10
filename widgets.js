@@ -32,14 +32,10 @@ const AppEntry = new Lang.Class({
             x_fill: true,
             y_fill: true
         });
-        this.actor.set_size(130, 130);
+        this.actor.set_size(125, 125);
         this.actor._delegate = this;
 
         let layout = new St.BoxLayout({
-            // margin_top: 5,
-            // margin_right: 5,
-            // margin_bottom: 5,
-            // margin_left: 5,
             vertical: true
         });
 
@@ -51,7 +47,6 @@ const AppEntry = new Lang.Class({
 
         let appLabel = new St.Label({
             text: this.appName,
-            // margin_top: 0,
             style: 'text-align: center',
             x_align: Clutter.ActorAlign.CENTER
         });
@@ -295,9 +290,6 @@ const Grid = new Lang.Class({
         this.actor = new St.Widget({
             layout_manager: new Clutter.TableLayout(),
             style_class: 'grid',
-            // style:
-            //     'spacing-rows: ' + this.rowSpacing + 'px;' +
-            //     'spacing-columns: ' + this.columnSpacing + 'px;'
         });
         this.actor._delegate = this;
     },
