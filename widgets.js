@@ -36,10 +36,10 @@ const AppEntry = new Lang.Class({
         this.actor._delegate = this;
 
         let layout = new St.BoxLayout({
-            margin_top: 5,
-            margin_right: 5,
-            margin_bottom: 5,
-            margin_left: 5,
+            // margin_top: 5,
+            // margin_right: 5,
+            // margin_bottom: 5,
+            // margin_left: 5,
             vertical: true
         });
 
@@ -51,7 +51,7 @@ const AppEntry = new Lang.Class({
 
         let appLabel = new St.Label({
             text: this.appName,
-            margin_top: 9,
+            // margin_top: 0,
             style: 'text-align: center',
             x_align: Clutter.ActorAlign.CENTER
         });
@@ -90,7 +90,7 @@ const CategoryView = new Lang.Class({
         this._fromCategory = false;
         this.categoryIds = [];
 
-        this.actor = new St.BoxLayout();
+        this.actor = new St.BoxLayout({style_class: 'menu-category'});
         this.actor.set_size(this._view.columns * 130 + 17, this._view.viewHeight);
         this.actor._delegate = this;
 
@@ -117,7 +117,7 @@ const CategoryView = new Lang.Class({
             clip_to_allocation: true,
             reactive: true
         });
-        this._layout.set_size((this._view.columns - 1) * 130, this._view.rows * 130);
+        this._layout.set_size((this._view.columns - 1) * 130, this._view.rows * 100);
 
         this.appView = new Grid(this._view.rows, this._view.columns - 1);
         this._layout.add_actor(this.appView.actor, { expand: true });
@@ -223,12 +223,15 @@ const CategoryView = new Lang.Class({
 
     movePage: function(step) {
 
-        if (step == 0)
+        if (step == 0) {
             return;
-        if (step < 0 && this._currentPosition >= 0) //Left border
+        }
+        if (step < 0 && this._currentPosition >= 0) { //Left border
             return;
-        if (step > 0 && (-this._currentPosition) >= ((this.appView.getNPages() - 1) * this.appView.getPageColumns() * 130)) //Right border
+        } 
+        if (step > 0 && (-this._currentPosition) >= ((this.appView.getNPages() - 1) * this.appView.getPageColumns() * 130)) { //Right border
             return;
+        }
 
         let count = 0;
         let increment = -step * 130 * (this._view.columns - 1) / 10;
@@ -268,6 +271,7 @@ const CategoryView = new Lang.Class({
         this.actor.destroy();
     }
 });
+
 Signals.addSignalMethods(CategoryView.prototype);
 
 const Grid = new Lang.Class({
@@ -278,7 +282,7 @@ const Grid = new Lang.Class({
         this._currentRow = 0;
         this._currentCol = 0;
 
-        this.rowSpacing = 20;
+        this.rowSpacing = 10;
         this.columnSpacing = 0;
 
         this._pageRows = rows;
@@ -627,7 +631,7 @@ const Sidebar = new Lang.Class({
 
         this.actor = new St.BoxLayout({
             vertical: true,
-            width: 145
+            width: 155
         });
         this.actor.add_style_class_name('sidebar');
         this.actor._delegate = this;
@@ -637,9 +641,7 @@ const Sidebar = new Lang.Class({
 
         let button = new St.Button({
             toggle_mode: true,
-            style: 'padding-left: 12px;' +
-                   'padding-right: 12px;',
-            style_class: 'button',
+            style_class: 'menu-category-button',
             x_align: St.Align.START
         });
         button.connect('clicked', Lang.bind(this, this.selectionChange));
@@ -710,7 +712,7 @@ const Switcher = new Lang.Class({
 
         this.actor = new St.BoxLayout({
             can_focus: false,
-            style: 'spacing: 4px;'
+            style: 'spacing: 10px;'
         });
         this.actor._delegate = this;
     },
@@ -719,9 +721,9 @@ const Switcher = new Lang.Class({
 
         let button = new St.Button({
             label: label.toString(),
-            width: 30,
+            width: 22,
             can_focus: false,
-            style_class: 'button switcher',
+            style_class: 'switcher-button',
             toggle_mode: true
         });
 

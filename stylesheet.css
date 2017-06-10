@@ -1,6 +1,6 @@
 .slingshot.popup-menu-content {
     padding: 5px;
-    font-size: 10pt;
+    font-size: 11pt;
 }
 
 /** Entries *******************************************************************/
@@ -54,7 +54,7 @@
 }
 
 .slingshot .app:hover {
-    background-color: rgba(0, 0, 0, 0.10);
+    background-color: rgba(255, 255, 255, 0.10);
 }
 
 .slingshot .app:focus {
@@ -63,7 +63,12 @@
 
 /** Sidebar Buttons ***********************************************************/
 
-.slingshot .sidebar .button {
+.slingshot .sidebar {
+    background-color: transparent;
+    height: 100%;
+}
+
+/*.slingshot .sidebar .button {
 	padding: 5px;
     border-radius: 0px;
     border-top: 1px;
@@ -72,7 +77,9 @@
     border-left: 0px;
     border-color: transparent;
     box-shadow: none;
-}
+}*/
+
+/*
 
 .slingshot .sidebar .button:active,
 .slingshot .sidebar .button:hover:active {
@@ -93,7 +100,7 @@
 .slingshot .sidebar .button {
     text-shadow: 0px 1px alpha (#fff, 0.4);
     icon-shadow: 0px 1px alpha (#fff, 0.4);
-}
+}*/
 
 /** Linked Buttons ************************************************************/
 
@@ -160,4 +167,61 @@
     color: #fff;
     text-shadow: 1px 1px #000;
     font-size: 11pt;
+}
+
+
+/** Layout ******************************************************************/
+
+.slingshot .top-box {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.slingshot .center-box {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+.slingshot .switcher-button {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 2px;
+    font-size: 9px;
+    /*margin-bottom: 50px;*/
+
+}
+
+.slingshot .switcher-button:active,
+.slingshot .switcher-button:checked,
+.slingshot .switcher-button:hover,
+.slingshot .switcher-button:hover:active,
+.slingshot .switcher-button:hover:checked {
+    background-color: rgba(255, 255, 255, 1.0);
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.slingshot .menu-category-button {
+    font-size: 14px;
+    padding: 5px;
+    background-color: transparent;
+    text-shadow: 0px 1px rgba(255, 255, 255, 0.20);
+    box-shadow: inset 0px 0px 2px rgba(255, 255, 255, 0.20);
+}
+
+.slingshot .menu-category-button:active,
+.slingshot .menu-category-button:checked,
+.slingshot .menu-category-button:hover,
+.slingshot .menu-category-button:hover:active,
+.slingshot .menu-category-button:hover:checked {
+    background-color: rgba(255, 255, 255, 0.20);
+    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.20);
+}
+
+.menu-category {
+    margin-top: 15px;
+    margin-left: 0px;
 }

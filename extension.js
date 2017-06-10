@@ -57,32 +57,35 @@ const SlingshotView = new Lang.Class({
         this.apps = this.appSystem.getApps();
 
         let resolution = Main.layoutManager.primaryMonitor.width + 'x' + Main.layoutManager.primaryMonitor.height;
-        if (settings.get_string('screen-resolution') != resolution)
+        if (settings.get_string('screen-resolution') != resolution) {
             this._setupSize();
-        this.box.set_height(this._defaultRows * 145 + 140);
+        }
+        this.box.set_height(this._defaultRows * 125 + 140);
         this._setupUi();
         this._connectSignals();
     },
 
     _setupSize: function() {
 
-        global.log('Setting up size...');
+        // global.log('Setting up size...');
         settings.set_string('screen-resolution', Main.layoutManager.primaryMonitor.width + 'x' + Main.layoutManager.primaryMonitor.height);
         this._defaultColumns = 5;
         this._defaultRows = 3;
 
-        while ((this._defaultColumns * 130 + 48 >= 2 * Main.layoutManager.primaryMonitor.width / 3)) {
+        while ((this._defaultColumns * 125 + 48 >= 2 * Main.layoutManager.primaryMonitor.width / 3)) {
             this._defaultColumns--;
         }
 
-        while ((this._defaultRows * 145 + 72 >= 2 * Main.layoutManager.primaryMonitor.height / 3)) {
+        while ((this._defaultRows * 125 + 72 >= 2 * Main.layoutManager.primaryMonitor.height / 3)) {
             this._defaultRows--;
         }
 
-        if (settings.get_int('columns') != this._defaultColumns)
-            settings.set_int('columns', this._defaultColumns);
-        if (settings.get_int('rows') != this._defaultRows)
+        if (settings.get_int('rows') != this._defaultRows) {
             settings.set_int('rows', this._defaultRows);
+        }
+        if (settings.get_int('columns') != this._defaultColumns) {
+            settings.set_int('columns', this._defaultColumns);
+        }
 
         //global.log('Default Columns: ' + this._defaultColumns);
         //global.log('Default Rows: ' + this._defaultRows);
@@ -96,30 +99,23 @@ const SlingshotView = new Lang.Class({
             vertical: true
         });
 
-        this.top = new St.BoxLayout();
-
-        // this.top = new St.BoxLayout({
-        //     margin_top: 12,
-        //     margin_right: 12,
-        //     margin_bottom: 12,
-        //     margin_left: 12
-        // });
+        this.top = new St.BoxLayout({ style_class: 'top-box' });
 
         let topSeparator = new St.Label({ text: '' });
 
         this.viewSelector = new Granite.widgets.ModeButton();
 
-        let image = new St.Icon({
+        let iconViewGrid = new St.Icon({
             icon_size: 16,
             gicon: new Gio.ThemedIcon({ name: 'view-grid-symbolic' })
         });
-        this.viewSelector.append(image, _('View as Grid'));
+        this.viewSelector.append(iconViewGrid, _('View as Grid'));
 
-        let image = new St.Icon({
+        let iconViewList = new St.Icon({
             icon_size: 16,
             gicon: new Gio.ThemedIcon({ name: 'view-list-symbolic' })
         });
-        this.viewSelector.append(image, _('View by Category'));
+        this.viewSelector.append(iconViewList, _('View by Category'));
 
         if (settings.get_boolean('use-category'))
             this.viewSelector.selected = 1;
@@ -134,19 +130,14 @@ const SlingshotView = new Lang.Class({
             return event.button === 3;
         }));
 
-        if (settings.get_boolean('show-category-filter'))
+        if (settings.get_boolean('show-category-filter')) {
             this.top.add(this.viewSelector.actor);
+        }
+
         this.top.add(topSeparator, { expand: true });
         this.top.add(this.searchbar.actor);
 
-        // this.center = new St.BoxLayout({
-        //     margin_top: 12,
-        //     margin_right: 12,
-        //     margin_bottom: 12,
-        //     margin_left: 12
-        // });
-
-        this.center = new St.BoxLayout();
+        this.center = new St.BoxLayout({ style_class: 'center-box' });
 
         // Create the layout which works like view_manager
         this.viewManager = new St.Widget({
@@ -172,12 +163,7 @@ const SlingshotView = new Lang.Class({
 
         this.pageSwitcher = new Widgets.Switcher();
 
-        this.bottom = new St.Bin({
-            margin_top: 0,
-            margin_right: 24,
-            margin_bottom: 12,
-            margin_left: 24
-        });
+        this.bottom = new St.Bin({ style_class: 'switcher-bottom' });
 
         this.bottom.add_actor(this.pageSwitcher.actor);
 
@@ -187,12 +173,14 @@ const SlingshotView = new Lang.Class({
 
         this.box.add(this.container, { expand: true, x_fill: true, y_fill: true });
 
-        if (settings.get_boolean('use-category'))
+        if (settings.get_boolean('use-category')) {
             this._setModality(this.Modality.CATEGORY_VIEW);
-        else
+        }
+        else {
             this._setModality(this.Modality.NORMAL_VIEW);
+        }
 
-        global.log('UI setup complete.');
+        // global.log('UI setup complete.');
     },
 
     _connectSignals: function() {
@@ -250,16 +238,19 @@ const SlingshotView = new Lang.Class({
             this._readSettings(false, false, true);
         })));
         this._settingSignals.push(settings.connect('changed::show-category-filter', Lang.bind(this, function() {
-            if (settings.get_boolean('show-category-filter'))
+            if (settings.get_boolean('show-category-filter')) {
                 this.top.insert_child_at_index(this.viewSelector.actor, 0);
-            else
+            } else {
                 this.top.remove_child(this.viewSelector.actor);
+            }
         })));
         this._settingSignals.push(settings.connect('changed::use-category', Lang.bind(this, function() {
-            if (settings.get_boolean('use-category'))
+            if (settings.get_boolean('use-category')) {
                 this._setModality(this.Modality.CATEGORY_VIEW);
-            else
+            }
+            else {
                 this._setModality(this.Modality.NORMAL_VIEW);
+            }
         })));
 
         this._appSystemChangedId = this.appSystem.connect('changed', Lang.bind(this, function() {
@@ -572,8 +563,9 @@ const SlingshotView = new Lang.Class({
         switch (this._modality) {
             case this.Modality.NORMAL_VIEW:
 
-                if (settings.get_boolean('use-category'))
+                if (settings.get_boolean('use-category')) {
                     settings.set_boolean('use-category', false);
+                }
                 this.bottom.show();
                 this.viewSelector.actor.show();
                 this.pageSwitcher.actor.show();
@@ -587,13 +579,14 @@ const SlingshotView = new Lang.Class({
                 // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
                 // this.center.set_margin_left(12);
                 // this.top.set_margin_left(12);
-                this.viewManager.set_size(this._defaultColumns * 130, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
 
             case this.Modality.CATEGORY_VIEW:
 
-                if (!settings.get_boolean('use-category'))
+                if (!settings.get_boolean('use-category')) {
                     settings.set_boolean('use-category', true);
+                }
                 this.bottom.show();
                 this.viewSelector.actor.show();
                 this.pageSwitcher.actor.hide();
@@ -603,11 +596,11 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.show();
 
                 // remove the padding/margin on the left
-                // get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
+                //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
                 // this.box.set_style('padding-left: 0px');
-                // this.center.set_margin_left(0);
+                // this.center.set_margin_left(12);
                 // this.top.set_margin_left(17);
-                this.viewManager.set_size(this._defaultColumns * 130 + 17, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
 
             case this.Modality.SEARCH_VIEW:
@@ -675,26 +668,29 @@ const SlingshotView = new Lang.Class({
 
     _readSettings: function(firstStart, checkColumns, checkRows) {
 
-        if (checkColumns == null)
+        if (checkColumns == null) {
             checkColumns = true;
-        if (checkRows == null)
+        }
+
+        if (checkRows == null) {
             checkRows = true;
+        }
 
         if (checkColumns) {
-            if (settings.get_int('columns') > 3) {
+            if (settings.get_int('columns') > 5) {
                 this._defaultColumns = settings.get_int('columns');
             } else {
-                this._defaultColumns = 4;
-                settings.set_int('columns', 4);
+                this._defaultColumns = 5;
+                settings.set_int('columns', 5);
             }
         }
 
         if (checkRows) {
-            if (settings.get_int('rows') > 1) {
+            if (settings.get_int('rows') > 3) {
                 this._defaultRows = settings.get_int('rows');
             } else {
-                this._defaultRows = 2;
-                settings.set_int('rows', 2);
+                this._defaultRows = 3;
+                settings.set_int('rows', 3);
             }
         }
 
@@ -702,6 +698,9 @@ const SlingshotView = new Lang.Class({
             this._gridView.resize(this._defaultRows, this._defaultColumns);
             this.populateGridView();
             this.box.set_height(this._defaultRows * 145 + 140);
+            // this.box.set_width(this._defaultColumns * 130 + 15);
+
+            // this.box.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145 + 140);
 
             this._categoryView.appView.resize(this._defaultRows, this._defaultColumns);
             this._categoryView.actor.set_size(this.columns * 130 + 17, this.viewHeight);

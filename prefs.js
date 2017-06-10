@@ -31,7 +31,7 @@ const SlingshotPrefsWidget = new GObject.Class({
             name: 'columns',
             label: _('Columns'),
             tooltip: _('The default number of columns'),
-            min: 4,
+            min: 5,
             max: 10
         });
 
@@ -40,7 +40,7 @@ const SlingshotPrefsWidget = new GObject.Class({
             name: 'rows',
             label: _('Rows'),
             tooltip: _('The default number of rows'),
-            min: 2,
+            min: 3,
             max: 10
         });
 
