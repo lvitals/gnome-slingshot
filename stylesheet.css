@@ -1,7 +1,7 @@
-.slingshot.popup-menu-content {
+/*.slingshot.popup-menu-content {
     padding: 5px;
     font-size: 11pt;
-}
+}*/
 
 /** Entries *******************************************************************/
 
@@ -31,7 +31,7 @@
 
 /** Buttons *******************************************************************/
 
-.slingshot .button {
+/*.slingshot .button {
     padding: 5px;
     border-radius: 2.5px;
     background-color: transparent;
@@ -45,12 +45,13 @@
 .slingshot .button:hover:checked {
     background-color: rgba(0, 0, 0, 0.20);
     box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.20);
-}
+}*/
 
 /** App Buttons ***************************************************************/
 
 .slingshot .button.app {
     border-width: 0px;
+    margin: 0.1em;
 }
 
 .slingshot .app:hover {
@@ -173,17 +174,11 @@
 /** Layout ******************************************************************/
 
 .slingshot .top-box {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
 }
 
 .slingshot .center-box {
-    margin-top: 5px;
-    margin-bottom: 0px;
-    margin-left: 5px;
-    margin-right: 0px;
+    margin: 5px;
 }
 
 .slingshot .switcher-button {
@@ -191,7 +186,7 @@
     border-radius: 25px;
     padding: 2px;
     font-size: 9px;
-    /*margin-bottom: 50px;*/
+    /*margin-bottom: 150px;*/
 
 }
 
@@ -221,7 +216,11 @@
     box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.20);
 }
 
-.menu-category {
-    margin-top: 15px;
+.slingshot .menu-category {
+    margin-top: 0px;
     margin-left: 0px;
+}
+
+.slingshot .grid {
+    font-size: 15px;
 }

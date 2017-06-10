@@ -91,7 +91,7 @@ const CategoryView = new Lang.Class({
         this.categoryIds = [];
 
         this.actor = new St.BoxLayout({style_class: 'menu-category'});
-        this.actor.set_size(this._view.columns * 130 + 17, this._view.viewHeight);
+        this.actor.set_size(this._view.columns * 140 + 17, this._view.viewHeight);
         this.actor._delegate = this;
 
         this._setupUi();
@@ -117,7 +117,7 @@ const CategoryView = new Lang.Class({
             clip_to_allocation: true,
             reactive: true
         });
-        this._layout.set_size((this._view.columns - 1) * 130, this._view.rows * 100);
+        this._layout.set_size((this._view.columns - 1) * 140, this._view.rows * 100);
 
         this.appView = new Grid(this._view.rows, this._view.columns - 1);
         this._layout.add_actor(this.appView.actor, { expand: true });
@@ -282,7 +282,7 @@ const Grid = new Lang.Class({
         this._currentRow = 0;
         this._currentCol = 0;
 
-        this.rowSpacing = 10;
+        this.rowSpacing = 0;
         this.columnSpacing = 0;
 
         this._pageRows = rows;
@@ -294,9 +294,10 @@ const Grid = new Lang.Class({
 
         this.actor = new St.Widget({
             layout_manager: new Clutter.TableLayout(),
-            style:
-                'spacing-rows: ' + this.rowSpacing + 'px;' +
-                'spacing-columns: ' + this.columnSpacing + 'px;'
+            style_class: 'grid',
+            // style:
+            //     'spacing-rows: ' + this.rowSpacing + 'px;' +
+            //     'spacing-columns: ' + this.columnSpacing + 'px;'
         });
         this.actor._delegate = this;
     },

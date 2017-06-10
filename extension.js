@@ -60,9 +60,20 @@ const SlingshotView = new Lang.Class({
         if (settings.get_string('screen-resolution') != resolution) {
             this._setupSize();
         }
-        this.box.set_height(this._defaultRows * 125 + 140);
+        this.box.set_height(this._defaultRows * 130 + 180);
         this._setupUi();
         this._connectSignals();
+
+        if (settings.get_boolean('use-category')) {
+            this._setModality(this.Modality.CATEGORY_VIEW);
+        }
+        else {
+            this._setModality(this.Modality.NORMAL_VIEW);
+        }
+        
+        this.pageSwitcher.setActive(this.pageSwitcher.active);
+
+
     },
 
     _setupSize: function() {
@@ -117,10 +128,11 @@ const SlingshotView = new Lang.Class({
         });
         this.viewSelector.append(iconViewList, _('View by Category'));
 
-        if (settings.get_boolean('use-category'))
+        if (settings.get_boolean('use-category')) {
             this.viewSelector.selected = 1;
-        else
+        } else {
             this.viewSelector.selected = 0;
+        }        
 
         this.searchbar = new Granite.widgets.SearchBar(_("Search Apps..."));
         this.searchbar.pauseDelay = 200;
@@ -143,7 +155,7 @@ const SlingshotView = new Lang.Class({
         this.viewManager = new St.Widget({
             clip_to_allocation: true
         });
-        this.viewManager.set_size(this._defaultColumns * 130, this._defaultRows * 145);
+        this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
         this.center.add(this.viewManager, { expand: true, x_fill: true, y_fill: true, x_align: St.Align.START, y_align: St.Align.START });
 
         // Create the "NORMAL_VIEW"
@@ -517,15 +529,15 @@ const SlingshotView = new Lang.Class({
             return;
         if (step < 0 && this._currentPosition >= 0)
             return;
-        if (step > 0 && (-this._currentPosition) >= ((this._gridView.getNPages() - 1) * this._gridView.getPageColumns() * 130))
+        if (step > 0 && (-this._currentPosition) >= ((this._gridView.getNPages() - 1) * this._gridView.getPageColumns() * 134))
             return;
 
         let count = 0;
-        let increment = -step * 130 * this.columns / 10;
+        let increment = -step * 134 * this.columns / 12;
         Mainloop.timeout_add(30 / this.columns, Lang.bind(this, function() {
 
-            if (count >= 10) {
-                this._currentPosition += -step * 130 * this.columns - 10 * increment;
+            if (count >= 12) {
+                this._currentPosition += -step * 134 * this.columns - 12 * increment;
                 this._gridView.actor.set_x(this._currentPosition);
                 return false;
             }
@@ -591,9 +603,10 @@ const SlingshotView = new Lang.Class({
                 this.viewSelector.actor.show();
                 this.pageSwitcher.actor.hide();
                 this._categoryView.showPageSwitcher(true);
-                this._gridView.actor.hide();
                 this._searchView.actor.hide();
                 this._categoryView.actor.show();
+                this._gridView.actor.hide();
+                
 
                 // remove the padding/margin on the left
                 //get_content_area().set_margin_left(PADDINGS.left + SHADOW_SIZE);
@@ -616,7 +629,7 @@ const SlingshotView = new Lang.Class({
                 // this.box.set_style('padding-left: ' + this.PADDINGS.left + 5 + 'px');
                 // this.center.set_margin_left(12);
                 // this.top.set_margin_left(12);
-                this.viewManager.set_size(this._defaultColumns * 130, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
                 break;
         }
     },
@@ -677,7 +690,7 @@ const SlingshotView = new Lang.Class({
         }
 
         if (checkColumns) {
-            if (settings.get_int('columns') > 5) {
+            if (settings.get_int('columns') > 4) {
                 this._defaultColumns = settings.get_int('columns');
             } else {
                 this._defaultColumns = 5;
@@ -686,7 +699,7 @@ const SlingshotView = new Lang.Class({
         }
 
         if (checkRows) {
-            if (settings.get_int('rows') > 3) {
+            if (settings.get_int('rows') > 2) {
                 this._defaultRows = settings.get_int('rows');
             } else {
                 this._defaultRows = 3;
@@ -697,14 +710,20 @@ const SlingshotView = new Lang.Class({
         if (!firstStart) {
             this._gridView.resize(this._defaultRows, this._defaultColumns);
             this.populateGridView();
-            this.box.set_height(this._defaultRows * 145 + 140);
-            // this.box.set_width(this._defaultColumns * 130 + 15);
-
-            // this.box.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145 + 140);
-
-            this._categoryView.appView.resize(this._defaultRows, this._defaultColumns);
-            this._categoryView.actor.set_size(this.columns * 130 + 17, this.viewHeight);
+            this.box.set_height(this._defaultRows * 130 + 180);
+            this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
             this._categoryView.showFilteredApps(this._categoryView.categoryIds[this._categoryView.categorySwitcher.selected]);
+
+            if (settings.get_boolean('use-category')) {
+                this._setModality(this.Modality.CATEGORY_VIEW);
+            }
+            else {
+                this._setModality(this.Modality.NORMAL_VIEW);
+            }
+        
+            this.pageSwitcher.setActive(this.pageSwitcher.active);
+
+
         }
     },
 
