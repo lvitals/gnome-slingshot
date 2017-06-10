@@ -154,7 +154,7 @@ const SlingshotView = new Lang.Class({
         this.viewManager = new St.Widget({
             clip_to_allocation: true
         });
-        this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
+        this.viewManager.set_size(this._defaultColumns * 132 + 15, this._defaultRows * 145);
         this.center.add(this.viewManager, { expand: true, x_fill: true, y_fill: true, x_align: St.Align.START, y_align: St.Align.START });
 
         // Create the "NORMAL_VIEW"
@@ -585,7 +585,7 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.hide();
                 this._gridView.actor.show();
 
-                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 132 + 15, this._defaultRows * 145);
                 break;
 
             case this.Modality.CATEGORY_VIEW:
@@ -601,7 +601,7 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.show();
                 this._gridView.actor.hide();
 
-                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 132 + 15, this._defaultRows * 145);
                 break;
 
             case this.Modality.SEARCH_VIEW:
@@ -612,7 +612,7 @@ const SlingshotView = new Lang.Class({
                 this._categoryView.actor.hide();
                 this._searchView.actor.show();
 
-                this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
+                this.viewManager.set_size(this._defaultColumns * 132 + 15, this._defaultRows * 145);
                 break;
         }
     },
@@ -698,7 +698,7 @@ const SlingshotView = new Lang.Class({
             this._gridView.resize(this._defaultRows, this._defaultColumns);
             this.populateGridView();
             this.box.set_height(this._defaultRows * 130 + 180);
-            this.viewManager.set_size(this._defaultColumns * 130 + 15, this._defaultRows * 145);
+            this.viewManager.set_size(this._defaultColumns * 132 + 15, this._defaultRows * 145);
             this._categoryView.showFilteredApps(this._categoryView.categoryIds[this._categoryView.categorySwitcher.selected]);
 
             if (settings.get_boolean('use-category')) {
