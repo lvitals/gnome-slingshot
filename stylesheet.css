@@ -31,7 +31,8 @@
     padding: 5px;
     border-radius: 2.5px;
     background-color: transparent;
-    text-shadow: 0px 1px rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    text-shadow: 0px 1px rgba(255, 255, 255, 0.4);
     box-shadow: inset 0px 0px 2px rgba(255, 255, 255, 0.20);
 }
 
@@ -39,8 +40,8 @@
 .slingshot .button:checked,
 .slingshot .button:hover:active,
 .slingshot .button:hover:checked {
-    background-color: rgba(0, 0, 0, 0.20);
-    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.20);
+    background-color: rgba(190, 190, 190, 0.40);
+    box-shadow: inset 0px 0px 2px rgba(190, 190, 190, 0.40);
 }
 
 /** App Buttons ***************************************************************/
@@ -54,11 +55,11 @@
 }
 
 .slingshot .app:hover {
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color: rgba(190, 190, 190, 0.40);
 }
 
 .slingshot .app:focus {
-    background-color: rgba(0, 0, 0, 0.20);
+    background-color: rgba(190, 190, 190, 0.40);
 }
 
 /** Sidebar Buttons ***********************************************************/
@@ -147,7 +148,7 @@
 }
 
 .slingshot .switcher-button {
-    border: 3px solid rgba(255, 255, 255, 0.9);
+    border: 3px solid rgba(190, 190, 190, 1.0);
     border-radius: 25px;
     padding: 1px;
     font-size: 9px;
@@ -158,8 +159,8 @@
 .slingshot .switcher-button:hover,
 .slingshot .switcher-button:hover:active,
 .slingshot .switcher-button:hover:checked {
-    background-color: rgba(255, 255, 255, 1.0);
-    color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(200, 200, 200, 1.0);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .slingshot .menu-category-button {
@@ -175,8 +176,8 @@
 .slingshot .menu-category-button:hover,
 .slingshot .menu-category-button:hover:active,
 .slingshot .menu-category-button:hover:checked {
-    background-color: rgba(255, 255, 255, 0.20);
-    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.20);
+    background-color: rgba(190, 190, 190, 0.40);
+    box-shadow: inset 0px 0px 2px rgba(190, 190, 190, 0.40);
 }
 
 .slingshot .menu-category {
