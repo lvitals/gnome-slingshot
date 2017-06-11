@@ -109,7 +109,13 @@ const SlingshotView = new Lang.Class({
             vertical: true
         });
 
-        this.top = new St.BoxLayout({ style_class: 'top-box' });
+        this.top = new St.BoxLayout({
+             style_class: 'top-box',
+             margin_top: 5,
+             margin_right: 5,
+             margin_bottom: 5,
+             margin_left: 5
+        });
 
         let topSeparator = new St.Label({ text: '' });
 
@@ -148,7 +154,13 @@ const SlingshotView = new Lang.Class({
         this.top.add(topSeparator, { expand: true });
         this.top.add(this.searchbar.actor);
 
-        this.center = new St.BoxLayout({ style_class: 'center-box' });
+        this.center = new St.BoxLayout({
+             style_class: 'center-box',
+             margin_top: 5,
+             margin_right: 5,
+             margin_bottom: 5,
+             margin_left: 5
+        });
 
         // Create the layout which works like view_manager
         this.viewManager = new St.Widget({

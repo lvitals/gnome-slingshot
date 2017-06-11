@@ -30,7 +30,11 @@ const AppEntry = new Lang.Class({
         this.actor = new St.Button({
             style_class: 'button app',
             x_fill: true,
-            y_fill: true
+            y_fill: true,
+            margin_top: 1,
+            margin_bottom: 1,
+            margin_left: 1,
+            margin_right: 3,
         });
         this.actor.set_size(125, 125);
         this.actor._delegate = this;

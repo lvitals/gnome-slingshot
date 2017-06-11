@@ -48,7 +48,10 @@
 
 .slingshot .button.app {
     border-width: 0px;
-    margin: 0.1em;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    margin-right: 3px;
 }
 
 .slingshot .app:hover {
@@ -147,10 +150,8 @@
 .slingshot .switcher-button {
     border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 25px;
-    padding: 2px;
+    padding: 1px;
     font-size: 9px;
-    /*margin-bottom: 150px;*/
-
 }
 
 .slingshot .switcher-button:active,
