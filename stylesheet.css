@@ -3,7 +3,7 @@
 /** Entries *******************************************************************/
 
 .slingshot .entry {
-    padding: 4px 8px;
+    padding: 3px;
     border-radius: 3px;
     color: #333;
     border: 1px solid #ccc;
@@ -15,7 +15,6 @@
     caret-size: 1px;
     selection-background-color: #6bb2e1;
     selected-color: #fff;
-    height: 16px;
 }
 
 .slingshot .entry:focus,
