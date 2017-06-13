@@ -36,7 +36,7 @@ const AppEntry = new Lang.Class({
             margin_left: 1,
             margin_right: 3,
         });
-        this.actor.set_size(125, 125);
+        // this.actor.set_size(125, 125);
         this.actor._delegate = this;
 
         let layout = new St.BoxLayout({
@@ -137,8 +137,9 @@ const CategoryView = new Lang.Class({
 
     setupSidebar: function() {
 
-        if (this.categorySwitcher != null)
+        if (this.categorySwitcher != null) {
             this.categorySwitcher.actor.destroy();
+        }
 
         this.categorySwitcher = new Sidebar();
         this.categorySwitcher.actor.can_focus = false;
@@ -175,8 +176,9 @@ const CategoryView = new Lang.Class({
         }));
 
         this.appView.connect('new-page', Lang.bind(this, function(actor, page) {
-            if (this.switcher.size == 0)
+            if (this.switcher.size == 0) {
                 this.switcher.append('1');
+            }
             this.switcher.append(page);
 
             /* Prevents pages from changing */
@@ -202,6 +204,10 @@ const CategoryView = new Lang.Class({
         appEntry.connect('app-launched', Lang.bind(this, function() {
             this._view.close(true);
         }));
+
+        // set size icon to category
+        appEntry.actor.set_size(125, 125);
+
         this.appView.append(appEntry.actor);
     },
 
