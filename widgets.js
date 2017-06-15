@@ -724,7 +724,7 @@ const Switcher = new Lang.Class({
 
         let button = new St.Button({
             label: label.toString(),
-            width: 22,
+            width: 23,
             can_focus: false,
             style_class: 'switcher-button',
             toggle_mode: true
