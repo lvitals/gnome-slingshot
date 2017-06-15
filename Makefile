@@ -1,6 +1,6 @@
 # Install directory
 EXT_DIR=$(HOME)/.local/share/gnome-shell/extensions
-EXT_NAME=applications-menu-slingshot@leavitals.gmail.com
+EXT_NAME=slingshot-launcher@leavitals.gmail.com
 
 .PHONY: build clean install uninstall fetch-updates update default
 
