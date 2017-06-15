@@ -1,4 +1,4 @@
 gnome-slingshot
 ==================
 
-Slingshot launcher in the form of a GNOME Shell extension.
+Applications Menu Slingshot launcher in the form of a GNOME Shell extension.

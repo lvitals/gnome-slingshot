@@ -1,10 +1,11 @@
 {
-    "extension-id": "slingshot",
-    "uuid": "slingshot@leavitals",
+    "extension-id": "applications-menu-slingshot",
+    "uuid": "applications-menu-slingshot@leavitals.gmail.com",
+    "url": "https://github.com/lvitals/gnome-slingshot",
     "settings-schema": "org.gnome.shell.extensions.slingshot",
     "gettext-domain": "gnome-shell-extension-slingshot",
-    "name": "Slingshot",
-    "description": "Slingshot launcher in the form of a GNOME Shell extension.",
+    "name": "Applications Menu Slingshot",
+    "description": "Applications Menu Slingshot launcher in the form of a GNOME Shell extension.",
     "shell-version": [ "3.10", "3.12", "3.14", "3.22" ],
     "version": "1.0"
 }
