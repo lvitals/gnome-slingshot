@@ -27,8 +27,10 @@ const AppEntry = new Lang.Class({
         this.iconSize = settings.get_int('icon-size');
         this.icon = app.icon;
 
+        let style = "popup-menu-item popup-submenu-menu-item app-button";
         this.actor = new St.Button({
-            style_class: 'button app',
+            reactive: true, 
+            style_class: style,
             x_fill: true,
             y_fill: true,
             margin_top: 1,
@@ -36,7 +38,7 @@ const AppEntry = new Lang.Class({
             margin_left: 1,
             margin_right: 3,
         });
-        // this.actor.set_size(125, 125);
+
         this.actor._delegate = this;
 
         let layout = new St.BoxLayout({
@@ -424,9 +426,10 @@ const SearchItem = new Lang.Class({
         layout.add_actor(this._icon);
         layout.add_actor(vbox);
 
+        let style = "popup-menu-item popup-submenu-menu-item app-button";
         this.actor = new St.Button({
             height: this.iconSize + 10,
-            style_class: 'button app',
+            style_class: style,
             x_align: Clutter.ActorAlign.START,
             x_fill: true
         });

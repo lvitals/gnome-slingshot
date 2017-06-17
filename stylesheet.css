@@ -1,4 +1,5 @@
 
+
 /** Entries *******************************************************************/
 
 .slingshot .entry {
@@ -26,22 +27,29 @@
 .slingshot .button {
     padding: 5px;
     border-radius: 2.5px;
+    border: 1px solid rgba(190, 190, 190, 1.0);
+    box-shadow: inset 0px 0px 2px rgba(190, 190, 190, 1.0);
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.20);
-    box-shadow: inset 0px 0px 2px rgba(255, 255, 255, 0.20);
+    color: rgba(110, 110, 110, 0.9);
+    text-shadow: 0px 1px rgba(190, 190, 190, 0.6);
 }
-
 .slingshot .button:active,
-.slingshot .button:checked,
-.slingshot .button:hover:active,
-.slingshot .button:hover:checked {
-    background-color: rgba(190, 190, 190, 0.40);
+.slingshot .button:checked {
+    background-color: rgba(190, 190, 190, 0.80);
+    color: rgba(255, 255, 255, 0.8);
     box-shadow: inset 0px 0px 2px rgba(190, 190, 190, 0.40);
 }
 
+.slingshot .button:focus,
+.slingshot .button:hover {
+    background-color: rgba(190, 190, 190, 0.80);
+}
+
+
 /** App Buttons ***************************************************************/
 
-.slingshot .button.app {
+.slingshot .app-button {
+    padding: 5px;
     border-width: 0px;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -49,11 +57,11 @@
     margin-right: 3px;
 }
 
-.slingshot .app:hover {
+.slingshot .app-button:hover {
     background-color: rgba(190, 190, 190, 0.40);
 }
 
-.slingshot .app:focus {
+.slingshot .app-button:focus {
     background-color: rgba(190, 190, 190, 0.40);
 }
 
@@ -119,18 +127,6 @@
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/** Tooltips ******************************************************************/
-
-#Tooltip {
-    padding: 4px;
-    border-style: none;
-    border-radius: 5px;
-    background-color: rgba(33, 37, 38, 0.90);
-    color: #fff;
-    text-shadow: 1px 1px #000;
-    font-size: 11pt;
-}
-
 
 /** Layout ******************************************************************/
 
@@ -155,7 +151,8 @@
 .slingshot .switcher-button:hover:active,
 .slingshot .switcher-button:hover:checked {
     background-color: rgba(200, 200, 200, 1.0);
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
 }
 
 .slingshot .menu-category-button {
@@ -181,5 +178,18 @@
 }
 
 .slingshot .grid {
-    font-size: 15px;
+    font-size: 15px;    
+}
+
+/** Tooltips ******************************************************************/
+
+#Tooltip { 
+    padding: 4px; /* not working */
+    border-radius: 5px; 
+    box-shadow: none;
+    text-shadow: 0 3px black;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-clip: padding-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
